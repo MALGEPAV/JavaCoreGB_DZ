@@ -12,3 +12,4 @@ public class Program {
         TextFileNoteAppender.appendNote(newNote2);
     }
 }
+    
