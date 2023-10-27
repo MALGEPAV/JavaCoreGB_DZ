@@ -6,11 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Employee {
+   public static enum Genders{MALE, FEMALE};
     protected String name;
     protected String position;
     protected String phoneNumber;
     protected int salary;
     protected int age;
+
+    protected Genders gender;
 
     public Employee() {
         Random random = new Random();
@@ -23,20 +26,23 @@ public class Employee {
         String defaultPhoneNumber = "123456789";
         int randomSalary = random.nextInt(49999, 100001);
         int randomAge = random.nextInt(18, 101);
+        Genders randomGender = Genders.values()[new Random().nextInt(2)];
 
         setName(randomName);
         setPosition(defaultPosition);
         setPhoneNumber(defaultPhoneNumber);
         setSalary(randomSalary);
         setAge(randomAge);
+        setGender(randomGender);
     }
 
-    public Employee(String name, String position, String phoneNumber, int salary, int age) {
+    public Employee(String name, String position, String phoneNumber, int salary, int age, Genders gender) {
         setName(name);
         setPosition(position);
         setPhoneNumber(phoneNumber);
         setSalary(salary);
         setAge(age);
+        setGender(gender);
     }
 
     public String getName() {
@@ -83,6 +89,14 @@ public class Employee {
     public void setAge(int age) {
         if (age < 18 || age > 100) throw new InvalidAgeException();
         this.age = age;
+    }
+
+    public Genders getGender() {
+        return gender;
+    }
+
+    public void setGender(Genders gender) {
+        this.gender = gender;
     }
 
     @Override
